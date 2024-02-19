@@ -1,0 +1,36 @@
+{
+  "DiscordServerId": "872175902660907038",
+  "token": "ODcyMjk2OTgyODE3OTY0MDYz.Gad6BR.UGSb_R9eIAhhYScnHlDbUNr5JJQQ3OJWL83z2Q",
+  "twitch_clientID": "bt0d6norqf2ecuz7289dspw9kfv21w",
+  "twitch_secret": "0c4ngagml6zvrbi5kso6qa73ojzmhw",
+  "cron": "*/10 * * * *",
+  "channelID": "872496220755591188",
+  "roleID": "873788813397360650",
+  "channels": [
+    {
+      "ChannelName": "themagicdragin",
+      "DiscordServer": "https://discord.gg/388R444EKw",
+      "twitch_stream_id": "",
+      "discord_message_id": ""
+    },
+    {
+      "ChannelName": "chzplzz",
+      "DiscordServer": "https://discord.gg/KtbsvvBWyd",
+      "twitch_stream_id": "49926055421",
+      "discord_message_id": "1185010859630669934"
+    },
+    {
+      "ChannelName": "pasbal",
+      "DiscordServer": "https://discord.gg/mZP9x6CEVe",
+      "twitch_stream_id": "41529350088",
+      "discord_message_id": "1183938782475583539"
+    },
+    {
+      "ChannelName": "raziadastra",
+      "DiscordServer": "https://discord.gg/FuwfKqjpnV",
+      "twitch_stream_id": "42488277262",
+      "discord_message_id": "1182816384879689728"
+    }
+  ],
+  "authToken": "kiiuio8fngti6y1wfdk0e74u7bodx3"
+}
