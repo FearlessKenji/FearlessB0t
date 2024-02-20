@@ -3,9 +3,7 @@ This Discord bot will automatically send a message and tag the assigned role whe
 The notifications will update every 10 minutes(default) while the streamer is live.
 
 # How does it work?
-This Discord bot uses [The Official Twitch Api](https://dev.twitch.tv/docs/api/). You will be able to assign unlimited streamers to the bot. The bot uses the api to fetch the channel data to see if the streamer is live. If the streamer is live it will send a message in the assigned channel and it will also tag the assigned role. You will be able to choose the update time. If the streamer is still live the bot will update the message after X amount of time (default 10 minutes).  
-
-<img src="https://cdn.discordapp.com/attachments/738800765023551660/821513567265226803/unknown.png" />  
+This Discord bot uses [The Official Twitch Api](https://dev.twitch.tv/docs/api/). You will be able to assign unlimited streamers to the bot. The bot uses the api to fetch the channel data to see if the streamer is live. If the streamer is live it will send a message in the assigned channel and it will also tag the assigned role. You will be able to choose the update time. If the streamer is still live the bot will update the message after X amount of time (default 10 minutes). 
 
 
 # Installation
