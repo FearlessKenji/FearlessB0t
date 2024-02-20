@@ -11,7 +11,7 @@ This Discord bot uses [The Official Twitch Api](https://dev.twitch.tv/docs/api/)
 # Installation
 First you will have to clone the project.
 ```console
-$ git clone https://github.com/Siddhart/Twitch-Discord-Bot
+$ git clone https://github.com/FearlessKenji/KenjiB0t
 ```
 
 After that open the config.json file
@@ -93,5 +93,3 @@ Use the command in the same directory as the index.js file.
 $ node index.js
 ```
 Congratulations! You have successfully setup the bot.
-If there are any errors please send me a dm on Discord
-siddhartt
