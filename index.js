@@ -17,7 +17,7 @@ client.on('ready', () => {
 });
 
 // Function to calculate the elapsed time
-function calculateElapsedTime() {
+function calculateUptime() {
     const CURR = new Date();
     const uptime = CURR - ST;
 
@@ -28,7 +28,7 @@ function calculateElapsedTime() {
 	const uptimeD = Math.floor(uptimeH / 24);
 
     // Print the elapsed time
-    console.log(`App has been running for ${seconds} seconds.`);
+    return `I have been awake for ${uptimeD} days, ${uptimeH % 24} hours, ${uptimeM % 60} minutes, ${uptimeS % 60} seconds`;
 }
 // Event triggered when a message is received
 client.on('message', (message) => {
@@ -44,7 +44,7 @@ client.on('message', (message) => {
 	//Start of command list
 	if (message.content[0] == '!') {
 		if (message.content == "!uptime"){
-			message.reply(`I have been awake for ${uptimeD} days, ${uptimeH % 24} hours, ${uptimeM % 60} minutes, ${uptimeS % 60} seconds`)
+			message.reply(calculateUptime());
 		}
 	}
 });
