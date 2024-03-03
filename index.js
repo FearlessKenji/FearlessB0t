@@ -52,27 +52,24 @@ client.on('message', async (message) => {
 	if (message.content.toLowerCase().includes('membis' || 'kenji')) {
         // React to the message with a custom emoji (replace with actual emoji)
         message.react('<:akatsudeal:874820233020461087>')
-    } else {
-		if (message.content.toLowerCase().includes('pembis' || 'perdi')) {
+	}
+	if (message.content.toLowerCase().includes('pembis' || 'perdi')) {
         // React to the message with a custom emoji (replace with actual emoji)
         message.react('<:perdikkas:872889060933390426>')
-		}
-    } else {
-		if (message.content.toLowerCase().includes('civ' || 'new game')) {
+	}
+    if (message.content.toLowerCase().includes('civ' || 'new game')) {
         // React to the message with a custom emoji (replace with actual emoji)
         message.react('<:civ:872889016322768906>')
-		}
-	} else {
-		if (message.content.toLowerCase().includes('dragin' || 'puff')) {
+	}
+	if (message.content.toLowerCase().includes('dragin' || 'puff')) {
         // React to the message with a custom emoji (replace with actual emoji)
         message.react('<:peeposmoke:1213895181313773569>')
-		}
-	} else {
-		if (message.content.toLowerCase().includes('bot')) {
+	}
+	if (message.content.toLowerCase().includes('bot')) {
         // React to the message with a custom emoji (replace with actual emoji)
         message.react('<:mendicant:1213895213475430400>')
-		}
 	}
+}
 	/*
 	// React with a Unicode emoji
 	if (message.content === '!react'){
