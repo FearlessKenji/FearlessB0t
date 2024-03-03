@@ -42,7 +42,7 @@ client.on('message', async (message) => {
 	if (message.author.bot) return; // Ignore messages from other bots
 
 	// Check if the message was sent in a specific channel
-	if (message.channel.id === 872507018227908689){ //DM channel ID
+	if (message.channel.id == 872507018227908689){ //DM channel ID
 		console.log(`New DM from ${message.author.tag}: ${message.content}`);
 	} else {
 		console.log(`New message in #${message.channel.name} from ${message.author.tag}: ${message.content}`);
