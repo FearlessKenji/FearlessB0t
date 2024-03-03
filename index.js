@@ -69,7 +69,6 @@ client.on('message', async (message) => {
         // React to the message with a custom emoji (replace with actual emoji)
         message.react('<:mendicant:1213895213475430400>')
 	}
-}
 	/*
 	// React with a Unicode emoji
 	if (message.content === '!react'){
