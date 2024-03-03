@@ -49,19 +49,19 @@ client.on('message', async (message) => {
 			console.log(`New message in #${message.channel.name} from ${message.author.tag}: ${message.content}`);
 		}
 	}
-	if (message.content.toLowerCase().includes('membis' || 'kenji')) {
+	if (message.content.toLowerCase().includes('membis') || message.content.toLowerCase().includes('kenji')) {
         // React to the message with a custom emoji (replace with actual emoji)
         message.react('<:akatsudeal:874820233020461087>')
 	}
-	if (message.content.toLowerCase().includes('pembis' || 'perdi')) {
+	if (message.content.toLowerCase().includes('pembis') || message.content.toLowerCase().includes('perdi')) {
         // React to the message with a custom emoji (replace with actual emoji)
         message.react('<:perdikkas:872889060933390426>')
 	}
-    if (message.content.toLowerCase().includes('civ' || 'new game')) {
+    if (message.content.toLowerCase().includes('civ') || message.content.toLowerCase().includes('new game')) {
         // React to the message with a custom emoji (replace with actual emoji)
         message.react('<:civ:872889016322768906>')
 	}
-	if (message.content.toLowerCase().includes('dragin' || 'puff')) {
+	if (message.content.toLowerCase().includes('dragin') || message.content.toLowerCase().includes('puff')) {
         // React to the message with a custom emoji (replace with actual emoji)
         message.react('<:peeposmoke:1213895181313773569>')
 	}
