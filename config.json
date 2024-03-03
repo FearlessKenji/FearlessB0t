@@ -5,6 +5,7 @@
   "twitch_secret": "",
   "cron": "*/10 * * * *",
   "channelID": "",
+  "botChannel": "",
   "roleID": "",
   "channels": [
     {

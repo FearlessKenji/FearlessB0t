@@ -21,6 +21,7 @@ After that open the config.json file
     "twitch_secret": "TWITCH_API_SECRET(REQUIRED)",
     "cron": "*/10 * * * * *",
     "channelID": "CHANNELD_ID(REQUIRED)",
+	"botChannel": "BOT_CHANNEL(REQUIRED)",
     "roleID": "ROLE_ID(NOT REQUIRED)",
     "channels": [
         {
@@ -38,9 +39,10 @@ After that open the config.json file
 - token - Enter your [Discord bot token](https://discord.com/developers/applications) here.
 - twitch_clientID - Enter the Twitch application client ID here ([Twitch Developer Console](https://dev.twitch.tv/console/apps)).
 - twitch_secret - Generate a api token on the Twitch application page.
-- cron - Enter your Update/check interval here ([Cron Guru](https://crontab.guru/)).
-- channelID - Copy and Paste the Discord channel ID here (The notifications will be send in this channel).
-- roleID - Copy and past the Discord Role ID here (This field is NOT required. Please assign "" to this if you don't want to tag any roles).
+- cron - Enter your update/check interval here ([Cron Guru](https://crontab.guru/)).
+- channelID - Copy and paste the Discord channel ID here (The Twitch notifications will be send in this channel).
+- botChannel - Copy and paste the Discord channel you wish to send commands from.
+- roleID - Copy and paste the Discord Role ID here (This field is NOT required. Please assign "" to this if you don't want to tag any roles).
 
 NOTE: Do NOT add anything in the fields that are already empty. These fields will automatically update.
 Some of values in the config.json template have "(NOT REQUIRED)" in it. If you are not using this replace it with an empty string.

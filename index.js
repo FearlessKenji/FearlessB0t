@@ -1,12 +1,11 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-var CronJob = require('cron').CronJob;
 const fs = require('fs')
-
 const Stream = require("./modules/getStreams.js")
 const Auth = require("./modules/auth.js")
 const Channel = require("./modules/channelData.js")
 const config = require('./config.json')
+const CronJob = require('cron').CronJob;
 
 //ready
 client.on('ready', () => {
@@ -14,6 +13,16 @@ client.on('ready', () => {
 
     //update the authorization key on startup
     UpdateAuthConfig()
+});
+
+// Event triggered when a message is received
+client.on('message', (message) => {
+  if (message.author.bot) return; // Ignore messages from other bots
+
+  // Check if the message was sent in a specific channel
+  if (message.content[0] == '!') {
+    console.log(`New message in #${message.channel.name} from ${message.author.tag}: ${message.content}`);
+  }
 });
 
 //function that will run the checks
