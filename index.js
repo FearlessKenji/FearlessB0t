@@ -49,11 +49,31 @@ client.on('message', async (message) => {
 			console.log(`New message in #${message.channel.name} from ${message.author.tag}: ${message.content}`);
 		}
 	}
-	if (message.content.toLowerCase().includes('membis')) {
+	if (message.content.toLowerCase().includes('membis' || 'kenji')) {
         // React to the message with a custom emoji (replace with actual emoji)
         message.react('<:akatsudeal:874820233020461087>')
-            .catch((error) => console.error('Error reacting to message:', error));
-    }
+    } else {
+		if (message.content.toLowerCase().includes('pembis' || 'perdi')) {
+        // React to the message with a custom emoji (replace with actual emoji)
+        message.react('<:perdikkas:872889060933390426>')
+		}
+    } else {
+		if (message.content.toLowerCase().includes('civ' || 'new game')) {
+        // React to the message with a custom emoji (replace with actual emoji)
+        message.react('<:civ:872889016322768906>')
+		}
+	} else {
+		if (message.content.toLowerCase().includes('dragin' || 'puff')) {
+        // React to the message with a custom emoji (replace with actual emoji)
+        message.react('<:peeposmoke:1213895181313773569>')
+		}
+	} else {
+		if (message.content.toLowerCase().includes('bot')) {
+        // React to the message with a custom emoji (replace with actual emoji)
+        message.react('<:mendicant:1213895213475430400>')
+		}
+	}
+	/*
 	// React with a Unicode emoji
 	if (message.content === '!react'){
 		const sentMessage = await message.reply({
@@ -71,7 +91,7 @@ client.on('message', async (message) => {
 		});
 		sentMessage.react('<:akatsudeal:874820233020461087>'); // Replace with your custom emoji ID
 	}
-	
+	*/
 	// Display runtime as a reply
 	if (message.content === "!uptime"){
 		const sentMessage = await message.reply({
