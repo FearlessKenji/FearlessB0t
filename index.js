@@ -1,5 +1,11 @@
-const Discord = require('discord.js');
-const client = new Discord.Client();
+const {Discord, GatewayIntentBits} = require('discord.js');
+const client = new Discord.Client({
+	intents: [
+		GatewayIntentBits.Guilds,
+		GatewayIntentBits.GuildMessages,
+		GatewayIntentBits.GuildMessageReactions
+		]
+});
 const fs = require('fs')
 const Stream = require("./modules/getStreams.js")
 const Auth = require("./modules/auth.js")
@@ -9,7 +15,7 @@ const CronJob = require('cron').CronJob;
 const ST = new Date();
 
 //ready
-client.on('ready', () => {
+client.once('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
 
     //update the authorization key on startup
@@ -30,22 +36,41 @@ function calculateElapsedTime() {
     // Print the elapsed time
     console.log(`App has been running for ${seconds} seconds.`);
 }
+
 // Event triggered when a message is received
-client.on('message', (message) => {
+client.on('messageCreate', async (message) => {
 	if (message.author.bot) return; // Ignore messages from other bots
-	
+
 	// Check if the message was sent in a specific channel
-	if (message.channel.id == 872507018227908689){ //DM channel ID
+	if (message.channel.id === 872507018227908689){ //DM channel ID
 		console.log(`New DM from ${message.author.tag}: ${message.content}`);
 	} else {
 		console.log(`New message in #${message.channel.name} from ${message.author.tag}: ${message.content}`);
 	}
+	// React with a Unicode emoji
+	if (message.content === '!react'){
+		const sentMessage = await message.reply({
+		content: 'You can react with Unicode emojis!',
+		fetchReply: true,
+	});
+	sentMessage.react('🙂'); // Replace with your desired emoji
+	}
+
+	// React with a custom emoji (replace with your own emoji ID)
+	if (message.content === '!react-custom'){
+		const sentMessage = await message.reply({
+			content: 'You can react with custom emojis!',
+			fetchReply: true,
+		});
+		sentMessage.react('123456789012345678'); // Replace with your custom emoji ID
+	}
 	
-	//Start of command list
-	if (message.content[0] == '!') {
-		if (message.content == "!uptime"){
-			message.reply(`I have been awake for ${uptimeD} days, ${uptimeH % 24} hours, ${uptimeM % 60} minutes, ${uptimeS % 60} seconds`)
-		}
+	// Display runtime as a reply
+	if (message.content === "!uptime"){
+		const sentMessage = await message.reply({
+			content: `I have been awake for ${uptimeD} days, ${uptimeH % 24} hours, ${uptimeM % 60} minutes, ${uptimeS % 60} seconds`,
+			fetchReply: true
+		})
 	}
 });
 
