@@ -23,7 +23,7 @@ client.once('ready', () => {
 });
 
 // Function to calculate the elapsed time
-function calculateElapsedTime() {
+function calculateUptime() {
     const CURR = new Date();
     const uptime = CURR - ST;
 
@@ -34,11 +34,11 @@ function calculateElapsedTime() {
 	const uptimeD = Math.floor(uptimeH / 24);
 
     // Print the elapsed time
-    console.log(`App has been running for ${seconds} seconds.`);
+    return `I have been awake for ${uptimeD} days, ${uptimeH % 24} hours, ${uptimeM % 60} minutes, ${uptimeS % 60} seconds`
 }
 
 // Event triggered when a message is received
-client.on('messageCreate', async (message) => {
+client.on('message', async (message) => {
 	if (message.author.bot) return; // Ignore messages from other bots
 
 	// Check if the message was sent in a specific channel
@@ -68,7 +68,7 @@ client.on('messageCreate', async (message) => {
 	// Display runtime as a reply
 	if (message.content === "!uptime"){
 		const sentMessage = await message.reply({
-			content: `I have been awake for ${uptimeD} days, ${uptimeH % 24} hours, ${uptimeM % 60} minutes, ${uptimeS % 60} seconds`,
+			content: calculateUptime(),
 			fetchReply: true
 		})
 	}
