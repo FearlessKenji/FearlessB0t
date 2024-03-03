@@ -45,8 +45,15 @@ client.on('message', async (message) => {
 	if (message.channel.id == 872507018227908689){ //DM channel ID
 		console.log(`New DM from ${message.author.tag}: ${message.content}`);
 	} else {
-		console.log(`New message in #${message.channel.name} from ${message.author.tag}: ${message.content}`);
+		if (message.content[0] === '!'){
+			console.log(`New message in #${message.channel.name} from ${message.author.tag}: ${message.content}`);
+		}
 	}
+	if (message.content.toLowerCase().includes('membis')) {
+        // React to the message with a custom emoji (replace with actual emoji)
+        message.react('<:akatsudeal:874820233020461087>')
+            .catch((error) => console.error('Error reacting to message:', error));
+    }
 	// React with a Unicode emoji
 	if (message.content === '!react'){
 		const sentMessage = await message.reply({
@@ -62,7 +69,7 @@ client.on('message', async (message) => {
 			content: 'You can react with custom emojis!',
 			fetchReply: true,
 		});
-		sentMessage.react('123456789012345678'); // Replace with your custom emoji ID
+		sentMessage.react('<:akatsudeal:874820233020461087>'); // Replace with your custom emoji ID
 	}
 	
 	// Display runtime as a reply
