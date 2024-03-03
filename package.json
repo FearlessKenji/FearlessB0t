@@ -51,6 +51,7 @@
     "node-fetch": "^2.7.0",
     "oauth-sign": "^0.8.2",
     "performance-now": "^0.2.0",
+    "pm2": "^5.3.1",
     "prism-media": "^1.3.5",
     "psl": "^1.9.0",
     "punycode": "^1.4.1",
@@ -75,7 +76,7 @@
     "ws": "^7.5.9"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prod:start": "pm2-runtime app.js"
   },
   "repository": {
     "type": "git",
@@ -87,7 +88,6 @@
     "url": "https://github.com/FearlessKenji/KenjiB0t/issues"
   },
   "homepage": "https://github.com/FearlessKenji/KenjiB0t#readme",
-  "devDependencies": {},
   "keywords": [
     "v1.0.2"
   ]
