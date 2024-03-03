@@ -1,9 +1,9 @@
-const {Discord, GatewayIntentBits} = require('discord.js');
+const Discord = require('discord.js');
 const client = new Discord.Client({
 	intents: [
-		GatewayIntentBits.Guilds,
-		GatewayIntentBits.GuildMessages,
-		GatewayIntentBits.GuildMessageReactions
+		Discord.Guilds,
+		Discord.GuildMessages,
+		Discord.GuildMessageReactions
 		]
 });
 const fs = require('fs')
