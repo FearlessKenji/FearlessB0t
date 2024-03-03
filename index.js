@@ -6,12 +6,7 @@ const Auth = require("./modules/auth.js")
 const Channel = require("./modules/channelData.js")
 const config = require('./config.json')
 const CronJob = require('cron').CronJob;
-var uptimeInSeconds = process.uptime();
-
-// Convert uptime to a human-readable format
-var uptimeInMinutes = Math.floor(uptimeInSeconds / 60);
-var uptimeInHours = Math.floor(uptimeInMinutes / 60);
-var uptimeInDays = Math.floor(uptimeInHours / 24);
+const ST = new Date();
 
 //ready
 client.on('ready', () => {
@@ -21,6 +16,20 @@ client.on('ready', () => {
     UpdateAuthConfig()
 });
 
+// Function to calculate the elapsed time
+function calculateElapsedTime() {
+    const CURR = new Date();
+    const uptime = CURR - ST;
+
+    // Convert elapsed time to seconds
+    const uptimeS = Math.floor(uptime / 1000);
+	const uptimeM = Math.floor(uptimeS / 60);
+	const uptimeH = Math.floor(uptimeM / 60);
+	const uptimeD = Math.floor(uptimeH / 24);
+
+    // Print the elapsed time
+    console.log(`App has been running for ${seconds} seconds.`);
+}
 // Event triggered when a message is received
 client.on('message', (message) => {
 	if (message.author.bot) return; // Ignore messages from other bots
@@ -35,7 +44,7 @@ client.on('message', (message) => {
 	//Start of command list
 	if (message.content[0] == '!') {
 		if (message.content == "!uptime"){
-			message.reply(`I have been awake for ${uptimeInDays} days, ${uptimeInHours % 24} hours, ${uptimeInMinutes % 60} minutes, ${uptimeInSeconds % 60} seconds`)
+			message.reply(`I have been awake for ${uptimeD} days, ${uptimeH % 24} hours, ${uptimeM % 60} minutes, ${uptimeS % 60} seconds`)
 		}
 	}
 });
