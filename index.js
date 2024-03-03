@@ -6,6 +6,12 @@ const Auth = require("./modules/auth.js")
 const Channel = require("./modules/channelData.js")
 const config = require('./config.json')
 const CronJob = require('cron').CronJob;
+const uptimeInSeconds = process.uptime();
+
+// Convert uptime to a human-readable format
+const uptimeInMinutes = Math.floor(uptimeInSeconds / 60);
+const uptimeInHours = Math.floor(uptimeInMinutes / 60);
+const uptimeInDays = Math.floor(uptimeInHours / 24);
 
 //ready
 client.on('ready', () => {
@@ -17,12 +23,21 @@ client.on('ready', () => {
 
 // Event triggered when a message is received
 client.on('message', (message) => {
-  if (message.author.bot) return; // Ignore messages from other bots
-
-  // Check if the message was sent in a specific channel
-  if (message.content[0] == '!') {
-    console.log(`New message in #${message.channel.name} from ${message.author.tag}: ${message.content}`);
-  }
+	if (message.author.bot) return; // Ignore messages from other bots
+	
+	// Check if the message was sent in a specific channel
+	if (message.channel.id == 872507018227908689){ //DM channel ID
+		console.log(`New DM from ${message.author.tag}: ${message.content}`);
+	} else {
+		console.log(`New message in #${message.channel.name} from ${message.author.tag}: ${message.content}`);
+	}
+	
+	//Start of command list
+	if (message.content[0] == '!') {
+		if (message.content == "!uptime"){
+			message.reply(`I have been awake for ${uptimeInDays} days, ${uptimeInHours % 24} hours, ${uptimeInMinutes % 60} minutes, ${uptimeInSeconds % 60} seconds`)
+		}
+	}
 });
 
 //function that will run the checks
