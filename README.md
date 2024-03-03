@@ -12,7 +12,7 @@ First you will have to clone the project.
 $ git clone https://github.com/FearlessKenji/KenjiB0t
 ```
 
-After that open the config.json file
+After that open the blank_config.json file
 ```console
 {
     "DiscordServerId": "DISCORD_GUILD_ID(REQUIRED)",
@@ -34,7 +34,8 @@ After that open the config.json file
     "authToken": ""
 }
 ```
-## Edit Config.json
+## Edit blank_config.json
+- Rename to config.json
 - DiscordServerId - Copy and past your Discord server ID here.
 - token - Enter your [Discord bot token](https://discord.com/developers/applications) here.
 - twitch_clientID - Enter the Twitch application client ID here ([Twitch Developer Console](https://dev.twitch.tv/console/apps)).
