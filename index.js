@@ -6,12 +6,12 @@ const Auth = require("./modules/auth.js")
 const Channel = require("./modules/channelData.js")
 const config = require('./config.json')
 const CronJob = require('cron').CronJob;
-const uptimeInSeconds = process.uptime();
+var uptimeInSeconds = process.uptime();
 
 // Convert uptime to a human-readable format
-const uptimeInMinutes = Math.floor(uptimeInSeconds / 60);
-const uptimeInHours = Math.floor(uptimeInMinutes / 60);
-const uptimeInDays = Math.floor(uptimeInHours / 24);
+var uptimeInMinutes = Math.floor(uptimeInSeconds / 60);
+var uptimeInHours = Math.floor(uptimeInMinutes / 60);
+var uptimeInDays = Math.floor(uptimeInHours / 24);
 
 //ready
 client.on('ready', () => {
