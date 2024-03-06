@@ -1,2 +1,3 @@
 config.json
 ecosystem.config.js
+*.log
