@@ -1,11 +1,4 @@
 const Discord = require('discord.js');
-const client = new Discord.Client({
-	intents: [
-		Discord.Guilds,
-		Discord.GuildMessages,
-		Discord.GuildMessageReactions
-		]
-});
 const fs = require('fs')
 const Stream = require("./modules/getStreams.js")
 const Auth = require("./modules/auth.js")
@@ -13,14 +6,62 @@ const Channel = require("./modules/channelData.js")
 const config = require('./config.json')
 const CronJob = require('cron').CronJob;
 const ST = new Date();
+const logsFolder = './logs'; // Specify the path to your logs folder
+const client = new Discord.Client({
+	intents: [
+		Discord.Guilds,
+		Discord.GuildMessages,
+		Discord.GuildMessageReactions
+		]
+});
 
 //ready
 client.once('ready', () => {
-    console.log(`Logged in as ${client.user.tag}!`);
+    console.log(writeLog(`Logged in as ${client.user.tag}!`));
 
     //update the authorization key on startup
     UpdateAuthConfig()
 });
+
+// Function to get formatted timestamp
+function getFormattedTimestamp() {
+	const now = new Date();
+	return now.toISOString().replace('T', ' ').slice(0, 19);
+}
+
+
+// Function to get initial content for the log file
+function initLog() {
+	const header = '=== KenjiB0t Console Log ===';
+	const separator = '========================';
+	const timestamp = dateToString(Date.now());
+
+	return `${header}\n${separator}\n[${timestamp}] Log file created.\n${separator}\n`;
+}
+
+// Function to write input data to a .log file
+function writeLog(logData) {
+	const logFile = 'logs/console.log'; // Specify the path to your .log file
+
+	if (!fs.existsSync(logFile)) {
+		// Create the file if it doesn't exist
+		if (!fs.existsSync(logsFolder)) {
+			fs.mkdirSync(logsFolder);
+			console.log(`Created "${logsFolder}" directory.`);
+		} else {
+			console.log(`"${logsFolder}" directory already exists.`);
+		}
+		
+		fs.writeFileSync(logFile, initLog()); // You can add initial content here if needed
+		console.log(`Created ${logFile}`);
+	}
+
+	// Append the input data to the log file
+	const timestamp = dateToString(Date.now());
+	fs.appendFileSync(logFile, `[${timestamp}] ${logData}\n`);
+	return logData
+}
+
 
 // Function to calculate the elapsed time
 function calculateUptime() {
@@ -35,6 +76,23 @@ function calculateUptime() {
 
     // Print the elapsed time
     return `I have been awake for ${uptimeD} days, ${uptimeH % 24} hours, ${uptimeM % 60} minutes, ${uptimeS % 60} seconds`
+}
+
+function dateToString (a) {
+	a = new Date(a)
+	month = a.getMonth() + 1
+	month = month.toString().padStart(2, '0');
+	day = a.getDate().toString().padStart(2, '0');
+	year = a.getFullYear()
+  	date = month + `/` + day + `/` + year
+  	hours = a.getHours();
+	minutes = a.getMinutes().toString().padStart(2, '0');
+	ampm = hours >= 12 ? 'pm' : 'am';
+	hours = hours % 12;
+	hours = hours ? hours : 12;
+	time = hours +`:`+ minutes +` `+ ampm
+	
+	return date + ` at ` + time;
 }
 
 // Event triggered when a message is received
@@ -108,25 +166,6 @@ var Check = new CronJob(config.cron,async function () {
         if (StreamData.data.length == 0) return
 
         StreamData = StreamData.data[0]
-
-		function dateToString (a) {
-			a = new Date(a)
-			month = a.getMonth() + 1
-			month = month.toString().padStart(2, '0');
-			day = a.getDate().toString().padStart(2, '0');
-			year = a.getFullYear()
-  
-			date = month + `/` + day + `/` + year
-  
-			hours = a.getHours();
-			minutes = a.getMinutes().toString().padStart(2, '0');
-			ampm = hours >= 12 ? 'pm' : 'am';
-			hours = hours % 12;
-			hours = hours ? hours : 12;
-			time = hours +`:`+ minutes +` `+ ampm
-
-			return date + ` at ` + time;
-		}
 		
 		startTime = dateToString(StreamData.started_at)
 		editTime = dateToString(Date.now())
@@ -227,6 +266,10 @@ async function UpdateAuthConfig(){
     tempConfig.authToken = authKey;
     fs.writeFileSync('./config.json', JSON.stringify(tempConfig, null, 2));
 }
+
+process.on('uncaughtException', function (err) {
+  console.error(writeLog('Caught exception: ', err));
+});
 
 //start the timers
 updateAuth.start()
