@@ -29,6 +29,10 @@ function getFormattedTimestamp() {
 	return now.toISOString().replace('T', ' ').slice(0, 19);
 }
 
+function epochTime() {
+	const epoch = Math.floor(Date.now()/1000);
+	return epoch
+}
 
 // Function to get initial content for the log file
 function initLog() {
@@ -150,6 +154,15 @@ client.on('message', async (message) => {
 	if (message.content === "!uptime"){
 		const sentMessage = await message.reply({
 			content: calculateUptime(),
+			fetchReply: true
+		})
+	}
+	
+	if (message.content === '!time'){
+		const discordTime = `<t:${epochTime()}:t>`;
+		const discordDate = `<t:${epochTime()}:d>`;
+		const semtMessage = await message.reply({
+			content: `it is currently ${discordTime}, ${discordDate}.`,
 			fetchReply: true
 		})
 	}
