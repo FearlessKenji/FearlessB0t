@@ -11,9 +11,9 @@ import { VerifyDiscordRequest, getRandomEmoji, DiscordRequest } from './utils.js
 import { getShuffledOptions, getResult } from './game.js';
 import { Client, Intents } from 'discord.js';
 import fs from 'fs';
-import Stream from "./modules/getStreams.js"
-import Auth from "./modules/auth.js"
-import Channel from "./modules/channelData.js"
+import * as Stream from "./modules/getStreams.js"
+import * as Auth from "./modules/auth.js"
+import * as Channel from "./modules/channelData.js"
 import config from './config.json' assert {type: 'json'};
 import { CronJob } from 'cron';
 const ST = new Date(); 			// Start time

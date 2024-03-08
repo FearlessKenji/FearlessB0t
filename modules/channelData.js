@@ -1,6 +1,6 @@
 import request from 'request'
 
-async function getData(channelName, clientID, authkey) {
+export async function getData(channelName, clientID, authkey) {
     return new Promise((resolve, reject) => {
         var headers = {
             'client-id': clientID,
@@ -32,8 +32,4 @@ async function getData(channelName, clientID, authkey) {
             }
         )
     });
-}
-
-export default function () {
-	console.log(`Imported channel data.`)
 }

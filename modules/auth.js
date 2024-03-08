@@ -1,6 +1,6 @@
 import request from 'request'
 
-async function getKey(clientID, clientSecret) {
+export async function getKey(clientID, clientSecret) {
     return new Promise((resolve, reject) => {
         request.post(
             `https://id.twitch.tv/oauth2/token?client_id=${clientID}&client_secret=${clientSecret}&grant_type=client_credentials`,
@@ -16,8 +16,4 @@ async function getKey(clientID, clientSecret) {
             }
         )
     });
-}
-
-export default function () {
-	console.log(`Imported auth data.`)
 }
