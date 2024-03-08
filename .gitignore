@@ -73,6 +73,7 @@ web_modules/
 .yarn-integrity
 
 # startup config files
+ecosystem.config.js
 ecosystem.config.cjs
 config.json
 
