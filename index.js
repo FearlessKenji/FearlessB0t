@@ -344,8 +344,8 @@ var Check = new CronJob(config.cron,async function () {
 
         StreamData = StreamData.data[0]
 		
-		startTime = dateToString(StreamData.started_at)
-		editTime = dateToString(Date.now())
+		var startTime = dateToString(StreamData.started_at)
+		var editTime = dateToString(Date.now())
 		
         //get the channel data for the thumbnail image
         const ChannelData = await Channel.getData(chan.ChannelName, tempData.twitch_clientID, tempData.authToken)
