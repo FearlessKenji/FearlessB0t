@@ -1,5 +1,5 @@
 node_modules
 config.json
-ecosystem.config.js
+ecosystem.config.cjs
 package-lock.json
 *.log
