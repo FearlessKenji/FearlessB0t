@@ -1,4 +1,4 @@
-const Discord = require('discord.js');
+const { Client, Intents } = require('discord.js');
 const fs = require('fs')
 const Stream = require("./modules/getStreams.js")
 const Auth = require("./modules/auth.js")
@@ -7,11 +7,12 @@ const config = require('./config.json')
 const CronJob = require('cron').CronJob;
 const ST = new Date();
 const logsFolder = './logs'; // Specify the path to your logs folder
-const client = new Discord.Client({
+const client = new Client({
 	intents: [
-		Discord.Guilds,
-		Discord.GuildMessages,
-		Discord.GuildMessageReactions
+		Client.Guilds,
+		Client.GuildMessages,
+		Client.GuildMessageReactions,
+		Intents.FLAGS.GUILDS
 		]
 });
 
