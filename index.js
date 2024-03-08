@@ -24,7 +24,8 @@ const client = new Client({
 		Client.GuildMessages,
 		Client.GuildMessageReactions,
 		Intents.FLAGS.GUILDS
-		]
+	],
+	allowedMentions: { parse: ['roles'] }
 });
 
 //ready
