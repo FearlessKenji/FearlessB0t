@@ -1,4 +1,4 @@
-const request = require('request')
+import request from 'request'
 
 async function getKey(clientID, clientSecret) {
     return new Promise((resolve, reject) => {
@@ -18,4 +18,6 @@ async function getKey(clientID, clientSecret) {
     });
 }
 
-module.exports = { getKey };
+export default function () {
+	console.log(`Imported auth data.`)
+}

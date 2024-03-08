@@ -1,4 +1,4 @@
-const request = require('request')
+import request from 'request'
 
 async function getData(channelName, clientID, authkey) {
     return new Promise((resolve, reject) => {
@@ -34,4 +34,6 @@ async function getData(channelName, clientID, authkey) {
     });
 }
 
-module.exports = { getData };
+export default function () {
+	console.log(`Imported channel data.`)
+}

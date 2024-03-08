@@ -1,12 +1,23 @@
-const { Client, Intents } = require('discord.js');
-const fs = require('fs')
-const Stream = require("./modules/getStreams.js")
-const Auth = require("./modules/auth.js")
-const Channel = require("./modules/channelData.js")
-const config = require('./config.json')
-const CronJob = require('cron').CronJob;
-const ST = new Date();
-const logsFolder = './logs'; // Specify the path to your logs folder
+import 'dotenv/config';
+import express from 'express';
+import {
+  InteractionType,
+  InteractionResponseType,
+  InteractionResponseFlags,
+  MessageComponentTypes,
+  ButtonStyleTypes,
+} from 'discord-interactions';
+import { VerifyDiscordRequest, getRandomEmoji, DiscordRequest } from './utils.js';
+import { getShuffledOptions, getResult } from './game.js';
+import { Client, Intents } from 'discord.js';
+import fs from 'fs';
+import Stream from "./modules/getStreams.js"
+import Auth from "./modules/auth.js"
+import Channel from "./modules/channelData.js"
+import config from './config.json' assert {type: 'json'};
+import { CronJob } from 'cron';
+const ST = new Date(); 			// Start time
+const logsFolder = './logs'; 	// Specify the path to your logs folder
 const client = new Client({
 	intents: [
 		Client.Guilds,
@@ -22,6 +33,49 @@ client.once('ready', () => {
 
     //update the authorization key on startup
     UpdateAuthConfig()
+});
+
+// Create an express app
+const app = express();
+// Get port, or default to 3000
+const PORT = process.env.PORT || 3000;
+// Parse request body and verifies incoming requests using discord-interactions package
+app.use(express.json({ verify: VerifyDiscordRequest(process.env.PUBLIC_KEY) }));
+
+// Store for in-progress games. In production, you'd want to use a DB
+const activeGames = {};
+
+// Interactions endpoint URL where Discord will send HTTP requests
+app.post('/interactions', async function (req, res) {
+	// Interaction type and data
+	const { type, id, data } = req.body;
+
+	/**
+	* Handle verification requests
+	*/
+	if (type === InteractionType.PING) {
+		return res.send({ type: InteractionResponseType.PONG });
+	}
+
+	/**
+	* Handle slash command requests
+	* See https://discord.com/developers/docs/interactions/application-commands#slash-commands
+	*/
+	if (type === InteractionType.APPLICATION_COMMAND) {
+		const { name } = data;
+
+		// "test" command
+		if (name === 'test') {
+			// Send a message into the channel where command was triggered from
+			return res.send({
+				type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+				data: {
+					// Fetches a random emoji to send from a helper function
+					content: 'hello world ' + getRandomEmoji(),
+				},
+			});
+		}
+	}
 });
 
 // Function to get formatted timestamp
@@ -85,17 +139,17 @@ function calculateUptime() {
 
 function dateToString (a) {
 	a = new Date(a)
-	month = a.getMonth() + 1
+	var month = a.getMonth() + 1
 	month = month.toString().padStart(2, '0');
-	day = a.getDate().toString().padStart(2, '0');
-	year = a.getFullYear()
-  	date = month + `/` + day + `/` + year
-  	hours = a.getHours();
-	minutes = a.getMinutes().toString().padStart(2, '0');
-	ampm = hours >= 12 ? 'pm' : 'am';
+	var day = a.getDate().toString().padStart(2, '0');
+	var year = a.getFullYear()
+  	const date = month + `/` + day + `/` + year
+  	var hours = a.getHours();
+	var minutes = a.getMinutes().toString().padStart(2, '0');
+	var ampm = hours >= 12 ? 'pm' : 'am';
 	hours = hours % 12;
 	hours = hours ? hours : 12;
-	time = hours +`:`+ minutes +` `+ ampm
+	const time = hours +`:`+ minutes +` `+ ampm
 	
 	return date + ` at ` + time;
 }
@@ -288,6 +342,10 @@ process.on('uncaughtException', function (err) {
 //start the timers
 updateAuth.start()
 Check.start();
+
+app.listen(PORT, () => {
+  console.log('Listening on port', PORT);
+});
 
 //login
 client.login(config.token);
