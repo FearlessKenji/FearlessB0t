@@ -12,26 +12,31 @@ First you will have to clone the project.
 $ git clone https://github.com/FearlessKenji/KenjiB0t
 ```
 
+Then install dependencies.
+```console
+$ npm install
+```
+
 After that open the blank_config.json file
 ```console
 {
-    "DiscordServerId": "DISCORD_GUILD_ID(REQUIRED)",
-    "token": "DISCORD_API_BOT_TOKEN(REQUIRED)",
-    "twitch_clientID": "TWITCH_API_CLIENT_ID(REQUIRED)",
-    "twitch_secret": "TWITCH_API_SECRET(REQUIRED)",
-    "cron": "*/10 * * * * *",
-    "channelID": "CHANNELD_ID(REQUIRED)",
+	"DiscordServerId": "DISCORD_GUILD_ID(REQUIRED)",
+	"token": "DISCORD_API_BOT_TOKEN(REQUIRED)",
+	"twitch_clientID": "TWITCH_API_CLIENT_ID(REQUIRED)",
+	"twitch_secret": "TWITCH_API_SECRET(REQUIRED)",
+	"cron": "*/10 * * * * *",
+	"channelID": "CHANNELD_ID(REQUIRED)",
 	"botChannel": "BOT_CHANNEL(REQUIRED)",
-    "roleID": "ROLE_ID(NOT REQUIRED)",
-    "channels": [
-        {
-            "ChannelName": "STREAMER_NAME(REQUIRED)",
-            "DiscordServer": "DISCORD_SERVER_INVITE_URL(NOT REQUIRED)",
-            "twitch_stream_id": "",
-            "discord_message_id": ""
-        }
-    ],
-    "authToken": ""
+	"roleID": "ROLE_ID(NOT REQUIRED)",
+	"channels": [
+		{
+		"ChannelName": "STREAMER_NAME(REQUIRED)",
+	        "DiscordServer": "DISCORD_SERVER_INVITE_URL(NOT REQUIRED)",
+        	"twitch_stream_id": "",
+		"discord_message_id": ""
+        	}
+	],
+	"authToken": ""
 }
 ```
 ## Edit blank_config.json
