@@ -247,5 +247,6 @@
   "bugs": {
     "url": "https://github.com/FearlessKenji/KenjiB0t/issues"
   },
-  "homepage": "https://github.com/FearlessKenji/KenjiB0t#readme"
+  "homepage": "https://github.com/FearlessKenji/KenjiB0t#readme",
+  "devDependencies": {}
 }
