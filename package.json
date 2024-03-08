@@ -91,6 +91,7 @@
     "function-bind": "^1.1.2",
     "get-intrinsic": "^1.2.4",
     "get-uri": "^6.0.3",
+    "git-filter-repo": "^0.0.30",
     "git-node-fs": "^1.0.0",
     "git-sha1": "^0.1.2",
     "glob": "^7.2.3",
