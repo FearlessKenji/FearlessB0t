@@ -1,23 +1,30 @@
-import 'dotenv/config';
-import express from 'express';
 import {
-  InteractionType,
-  InteractionResponseType,
-  InteractionResponseFlags,
-  MessageComponentTypes,
-  ButtonStyleTypes,
+	InteractionType,
+	InteractionResponseType,
+	InteractionResponseFlags,
+	MessageComponentTypes,
+	ButtonStyleTypes
 } from 'discord-interactions';
-import { VerifyDiscordRequest, getRandomEmoji, DiscordRequest } from './utils.js';
-import { getShuffledOptions, getResult } from './game.js';
-import { Client, Intents } from 'discord.js';
-import fs from 'fs';
-import * as Stream from "./modules/getStreams.js"
-import * as Auth from "./modules/auth.js"
+import {
+	VerifyDiscordRequest,
+	getRandomEmoji,
+	DiscordRequest
+} from './utils.js';
+import {
+	getShuffledOptions,
+	getResult
+} from './game.js';
 import * as Channel from "./modules/channelData.js"
-import config from './config.json' assert {type: 'json'};
+import * as Stream from "./modules/getStreams.js"
+import { Client, Intents } from 'discord.js';
+import * as Auth from "./modules/auth.js"
 import { CronJob } from 'cron';
+import express from 'express';
+import 'dotenv/config';
+import fs from 'fs';
 const ST = new Date(); 			// Start time
 const logsFolder = './logs'; 	// Specify the path to your logs folder
+const config = JSON.parse(fs.readFileSync('./config.json'))
 const client = new Client({
 	intents: [
 		Client.Guilds,
@@ -25,7 +32,9 @@ const client = new Client({
 		Client.GuildMessageReactions,
 		Intents.FLAGS.GUILDS
 	],
-	allowedMentions: { parse: ['roles'] }
+	allowedMentions: {
+		parse: ['roles']
+	}
 });
 
 //ready
