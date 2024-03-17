@@ -1,19 +1,26 @@
 {
-  "DiscordServerId": "",
-  "token": "",
-  "twitch_clientID": "",
-  "twitch_secret": "",
-  "cron": "*/10 * * * *",
-  "channelID": "",
-  "botChannel": "",
-  "roleID": "",
-  "channels": [
-    {
-      "ChannelName": "",
-      "DiscordServer": "",
-      "twitch_stream_id": "",
-      "discord_message_id": ""
-    }
-  ],
-  "authToken": ""
+	"token": "(REQUIRED)",
+	"twitchClientId": "(REQUIRED)",
+	"twitchSecret": "(REQUIRED)",
+	"channelId": "(REQUIRED)",
+	"clientId": "(REQUIRED)",
+	"botOwner": "(REQUIRED)",
+	"guildId": "(REQUIRED)",
+	"roleId": "(NOT REQUIRED)",
+	"cron": "*/10 * * * * *",
+	"channels": [
+		{
+			"ChannelName": "(REQUIRED)",
+			"DiscordServer": "(NOT REQUIRED)",
+			"twitch_stream_id": "",
+			"discord_message_id": ""
+		},
+		{
+			"ChannelName": "(REQUIRED)",
+			"DiscordServer": "(NOT REQUIRED)",
+			"twitch_stream_id": "",
+			"discord_message_id": ""
+		}
+	],
+	"authToken": ""
 }

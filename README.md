@@ -2,7 +2,7 @@
 This Discord bot will automatically send a message and tag the assigned role whenever a streamer went live.
 The notifications will update every 10 minutes(default) while the streamer is live.
 
-# How does it work?
+## How does it work?
 This Discord bot uses [The Official Twitch Api](https://dev.twitch.tv/docs/api/). You will be able to assign unlimited streamers to the bot. The bot uses the api to fetch the channel data to see if the streamer is live. If the streamer is live it will send a message in the assigned channel and it will also tag the assigned role. You will be able to choose the update time. If the streamer is still live the bot will update the message after X amount of time (default 10 minutes). 
 
 
@@ -12,50 +12,29 @@ First you will have to clone the project.
 $ git clone https://github.com/FearlessKenji/KenjiB0t
 ```
 
-Then install dependencies.
+## Dependencies
+In order for the bot to work properly you will have to install the required node packages outlined in packages.json. Use the following command to install the dependencies.
 ```console
 $ npm install
 ```
 
-After that open the blank_config.json file
-```console
-{
-	"DiscordServerId": "DISCORD_GUILD_ID(REQUIRED)",
-	"token": "DISCORD_API_BOT_TOKEN(REQUIRED)",
-	"twitch_clientID": "TWITCH_API_CLIENT_ID(REQUIRED)",
-	"twitch_secret": "TWITCH_API_SECRET(REQUIRED)",
-	"cron": "*/10 * * * * *",
-	"channelID": "CHANNELD_ID(REQUIRED)",
-	"botChannel": "BOT_CHANNEL(REQUIRED)",
-	"roleID": "ROLE_ID(NOT REQUIRED)",
-	"channels": [
-		{
-		"ChannelName": "STREAMER_NAME(REQUIRED)",
-	        "DiscordServer": "DISCORD_SERVER_INVITE_URL(NOT REQUIRED)",
-        	"twitch_stream_id": "",
-		"discord_message_id": ""
-        	}
-	],
-	"authToken": ""
-}
-```
 ## Edit blank_config.json
 - Rename to config.json
-- DiscordServerId - Copy and past your Discord server ID here.
 - token - Enter your [Discord bot token](https://discord.com/developers/applications) here.
-- twitch_clientID - Enter the Twitch application client ID here ([Twitch Developer Console](https://dev.twitch.tv/console/apps)).
-- twitch_secret - Generate a api token on the Twitch application page.
+- twitchClientId - Enter the Twitch application client ID here ([Twitch Developer Console](https://dev.twitch.tv/console/apps)).
+- twitchSecret - Generate a api token on the Twitch application page.
+- channelId - Copy and paste the Discord channel ID here (The Twitch notifications will be send in this channel).
+- botOwner - Copy and paste your discord ID for top access commands.
+- guildID - Copy and paste your Discord server ID here.
+- roleId - Copy and paste the Discord Role ID here (This field is NOT required. Please assign "" to this if you don't want to tag any roles).
 - cron - Enter your update/check interval here ([Cron Guru](https://crontab.guru/)).
-- channelID - Copy and paste the Discord channel ID here (The Twitch notifications will be send in this channel).
-- botChannel - Copy and paste the Discord channel you wish to send commands from.
-- roleID - Copy and paste the Discord Role ID here (This field is NOT required. Please assign "" to this if you don't want to tag any roles).
 
 NOTE: Do NOT add anything in the fields that are already empty. These fields will automatically update.
 Some of values in the config.json template have "(NOT REQUIRED)" in it. If you are not using this replace it with an empty string.
 ```"DISCORD_SERVER_INVITE_URL(NOT REQUIRED)" --> ""```
 
 ## Add streamers
-In the config.json there is a channels array. If you want to add streamers you just add new objects to this array.
+In the config.json there is a channels array. If you want to add streamers you just add new objects to this array. Don't forget commas!
 ```console
 {
    "ChannelName": "STREAMER_NAME(REQUIRED)",
@@ -66,15 +45,15 @@ In the config.json there is a channels array. If you want to add streamers you j
 ```
 - ChannelName - Enter the streamer login name here. This name is the same as the name in the channel URL.  
 Example: 
-URL = https://www.twitch.tv/stoiss2  
-ChannelName = stoiss2  
+URL = https://www.twitch.tv/fearlesskenji  
+ChannelName = fearlesskenji
 - DiscordServer - This field is not required but if the Streamer has their own Discord server you could add the invite url here.  
   
 An array with multiple streamers will look something like this:
 ```console
 {
    "ChannelName": "STREAMER1",
-   "DiscordServer": "Some Discord invite url here",
+   "DiscordServer": "discord.gg/invite",
    "twitch_stream_id": "",
    "discord_message_id": ""
 },
@@ -84,12 +63,6 @@ An array with multiple streamers will look something like this:
    "twitch_stream_id": "",
    "discord_message_id": ""
 }
-```
-
-## Dependencies
-In order for the bot to work properly you will have to install the node packages discord.js, cron and request. Use the following command to install the dependencies.
-```console
-$ npm install discord.js cron request
 ```
 
 ## Run the bot
