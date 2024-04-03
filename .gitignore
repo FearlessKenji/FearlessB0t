@@ -10,5 +10,8 @@ ecosystem.config.js
 ecosystem.config.cjs
 config.json
 
+# database files
+*.sqlite
+
 # dependency versions
 package-lock.json

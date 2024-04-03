@@ -2,7 +2,7 @@
 	"token": "(REQUIRED)",
 	"twitchClientId": "(REQUIRED)",
 	"twitchSecret": "(REQUIRED)",
-	"authToken": "(BLANK)",
+	"authToken": "",
 	"botOwner": "(REQUIRED)",
 	"clientId": "(REQUIRED)",
 	"guildId": "(REQUIRED)",
