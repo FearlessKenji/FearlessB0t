@@ -31,6 +31,30 @@ $ npm install
 
 All of these fields except 'authToken' are required.
 
+## Register Slash Commands
+Before you can use the commands, you need to run 
+```console
+$ node deploy-global-commands.js
+```
+and/or
+```console
+$node deploy-guild-commands.js
+```
+
+The global commands will be available in all servers. The guild commands will only be available in the server whos ID is matched with 'guildId' in the config.
+
+
+## Run the bot
+After you updated the config.json, installed the dependencies, and registered the commands, you can run the final command.
+Use the command in the same directory as the index.js file.
+```console
+$ node index.js
+```
+or
+```console
+$ npm run start
+```
+
 ## Add streamers
 Use the 'channels' slash command to add users to the database. Something similar to this:
 ```console
@@ -45,16 +69,5 @@ Example:
 There should be feedback on whether or not the addition was successful.
 
 There is also a /channels delete command that deletes entries from the database. 
-
-## Run the bot
-After you updated the config.json and installed the dependencies you can run the final command.
-Use the command in the same directory as the index.js file.
-```console
-$ node index.js
-```
-or
-```console
-$ npm run start
-```
 
 Congratulations! You have successfully setup the bot.
