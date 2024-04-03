@@ -38,8 +38,8 @@ Use the 'channels' slash command to add users to the database. Something similar
 ```
 - name - Enter the streamer login name here. This name is the same as the name in the channel URL.  
 Example:
-URL = https://www.twitch.tv/fearlesskenji  
-name = fearlesskenji
+- - URL = https://www.twitch.tv/fearlesskenji
+- - name = fearlesskenji
 - discord - This field is not required but if the Streamer has their own Discord server you could add the invite url here. 
   
 There should be feedback on whether or not the addition was successful.
