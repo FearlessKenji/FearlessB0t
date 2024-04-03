@@ -29,9 +29,7 @@ $ npm install
 - guildID - Copy and paste your Discord server ID here. This is for private guild-access commands.
 - cron - Enter your update/check interval here ([Cron Guru](https://crontab.guru/)).
 
-NOTE: Do NOT add anything in the fields that are already empty. These fields will automatically update.
-Some of values in the config.json template have "(NOT REQUIRED)" in it. If you are not using this replace it with an empty string.
-```"DISCORD_SERVER_INVITE_URL(NOT REQUIRED)" --> ""```
+All of these fields except 'authToken' are required.
 
 ## Add streamers
 Use the 'channels' slash command to add users to the database. Something similar to this:
@@ -39,12 +37,12 @@ Use the 'channels' slash command to add users to the database. Something similar
 /channels add name: FearlessKenji discord: https://discord.gg/FearlessKenji
 ```
 - name - Enter the streamer login name here. This name is the same as the name in the channel URL.  
-Example: 
+Example:
 URL = https://www.twitch.tv/fearlesskenji  
 name = fearlesskenji
 - discord - This field is not required but if the Streamer has their own Discord server you could add the invite url here. 
   
-There should be feedback on whether or not the addition was successfull..
+There should be feedback on whether or not the addition was successful.
 
 There is also a /channels delete command that deletes entries from the database. 
 
