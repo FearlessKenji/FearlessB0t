@@ -38,7 +38,7 @@ $ node deploy-global-commands.js
 ```
 and/or
 ```console
-$node deploy-guild-commands.js
+$ node deploy-guild-commands.js
 ```
 
 The global commands will be available in all servers. The guild commands will only be available in the server whos ID is matched with 'guildId' in the config.
