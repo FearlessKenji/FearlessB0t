@@ -1,5 +1,6 @@
 // Require the necessary discord.js classes
 const { Client, Collection, GatewayIntentBits, EmbedBuilder } = require('discord.js');
+const { Servers, Channels } = require('./database/dbObjects.js');
 const { dateToString } = require('./modules/dateToString.js');
 const { writeLog } = require('./modules/writeLog.js');
 const auth = require('./modules/updateAuthConfig.js');
@@ -10,11 +11,10 @@ const { CronJob } = require('cron');
 const path = require('node:path');
 const fs = require('node:fs');
 
-const { Servers, Channels } = require('./database/dbObjects.js');
-
 // Create a new client instance
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.GuildMessageReactions] });
 
+// Command handler
 client.commands = new Collection();
 const foldersPath = path.join(__dirname, 'commands');
 const commandDirectory = fs.readdirSync(foldersPath);
@@ -53,7 +53,7 @@ for (const file of eventFiles) {
 		client.on(event.name, (...args) => event.execute(...args));
 	}
 }
-// add kruzadar https://www.discord.gg/kruzadar
+
 // function that will run the checks
 const Check = new CronJob(config.cron, async function () {
 	const servers = await Servers.findAll({});
@@ -140,19 +140,19 @@ const Check = new CronJob(config.cron, async function () {
 });
 
 
-// update the authorization key every hour
+// Update the authorization key every hour
 const updateAuth = new CronJob('0 * * * *', async function () {
 	auth.UpdateAuthConfig();
 });
 
+// Catch exceptions
 process.on('uncaughtException', function (err) {
 	console.error(writeLog('Caught exception: ', err));
 });
 
-// start the timers
+// Start the timers
 updateAuth.start();
 Check.start();
 
 // Log in to Discord with your client's token
-
 client.login(config.token);
