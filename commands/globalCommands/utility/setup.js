@@ -5,19 +5,19 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('setup')
 		.setDescription('Configure server settings.')
-		.addStringOption(option =>
+		.addChannelOption(option =>
 			option.setName('channel')
-				.setDescription('Custom channel ID for notifications.')
+				.setDescription('Channel for notifications.')
 				.setRequired(true),
 		)
-		.addStringOption(option =>
+		.addRoleOption(option =>
 			option.setName('main-role')
-				.setDescription('Custom main role ID for notifications.')
+				.setDescription('Notification role for a single channel. Typically your own.')
 				.setRequired(true),
 		)
-		.addStringOption(option =>
+		.addRoleOption(option =>
 			option.setName('other-role')
-				.setDescription('Custom other role ID for notifications.'),
+				.setDescription('Notification role for standard channels.'),
 		),
 	async execute(interaction) {
 		const channelId = interaction.options.getString('channel');

@@ -1,5 +1,5 @@
 // Require the necessary discord.js classes
-const { Client, Collection, GatewayIntentBits, EmbedBuilder } = require('discord.js');
+const { Client, Collection, GatewayIntentBits, EmbedBuilder, ActivityType } = require('discord.js');
 const { Servers, Channels } = require('./database/dbObjects.js');
 const { dateToString } = require('./modules/dateToString.js');
 const { writeLog } = require('./modules/writeLog.js');
@@ -139,6 +139,63 @@ const Check = new CronJob(config.cron, async function () {
 	}
 });
 
+// Update status periodically
+let a = 0;
+const updateStatus = new CronJob('*/1 * * * *', async function () {
+	a++;
+	if (a === 1) {
+		client.user.setActivity({
+			type: ActivityType.Custom,
+			name: 'customstatus',
+			state: `Lurking in ${client.guilds.cache.size} servers.`, // Customize this to your desired status message
+		});
+	}
+	else if (a === 2) {
+		client.user.setActivity({
+			type: ActivityType.Playing,
+			name: 'customstatus',
+			state: 'Sid Meier\'s Civilization V', // Customize this to your desired status message
+		});
+	}
+	else if (a === 3) {
+		client.user.setActivity({
+			type: ActivityType.Playing,
+			name: 'customstatus',
+			state: 'Rocket League', // Customize this to your desired status message
+		});
+	}
+	else if (a === 4) {
+		client.user.setActivity({
+			type: ActivityType.Playing,
+			name: 'customstatus',
+			state: 'Helldivers II', // Customize this to your desired status message
+		});
+	}
+	else if (a === 5) {
+		client.user.setActivity({
+			type: ActivityType.Playing,
+			name: 'customstatus',
+			state: 'Grand Theft Auto VI', // Customize this to your desired status message
+		});
+	}
+	else if (a === 6) {
+		client.user.setActivity({
+			type: ActivityType.Playing,
+			name: 'customstatus',
+			state: 'Final Fantasy XVI', // Customize this to your desired status message
+		});
+	}
+	else if (a === 7) {
+		client.user.setActivity({
+			type: ActivityType.Watching,
+			name: 'customstatus',
+			state: 'Twitch.tv', // Customize this to your desired status message
+		});
+	}
+	else {
+		a = 0;
+	}
+});
 
 // Update the authorization key every hour
 const updateAuth = new CronJob('0 * * * *', async function () {
@@ -153,6 +210,7 @@ process.on('uncaughtException', function (err) {
 // Start the timers
 updateAuth.start();
 Check.start();
+updateStatus.start(a);
 
 // Log in to Discord with your client's token
 client.login(config.token);

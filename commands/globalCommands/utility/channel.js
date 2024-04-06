@@ -28,6 +28,11 @@ module.exports = {
 						.setDescription('Name of the channel to be deleted.')
 						.setRequired(true),
 				),
+		)
+		.addSubcommand(subcommand =>
+			subcommand
+				.setName('list')
+				.setDescription('List all channels for your server.'),
 		),
 	async execute(interaction) {
 		const subcommand = interaction.options.getSubcommand();
@@ -55,5 +60,23 @@ module.exports = {
 				await interaction.reply({ content: 'Failed to delete channel.', ephemeral: true });
 			}
 		}
+		else if (subcommand === 'list') {
+			const list = [];
+			try {
+				const channels = await Channels.findAll({
+					where: { guildId: interaction.guild.id },
+					raw: true,
+				});
+				for (const chan of channels) {
+					list.push(chan.ChannelName);
+				}
+				await interaction.reply({ content: `Channel List:\n${list.join('\n')}`, ephemeral: true });
+			}
+			catch (error) {
+				console.error(error);
+				await interaction.reply({ content: 'An error occurred while fetching the channel list.', ephemeral: true });
+			}
+		}
+
 	},
 };
