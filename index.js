@@ -143,6 +143,7 @@ const Check = new CronJob(config.cron, async function () {
 let a = 0;
 const updateStatus = new CronJob('*/10 * * * *', async function () {
 	a++;
+	console.log(`Changing to status ${a}`);
 	if (a === 1) {
 		client.user.setActivity({
 			type: ActivityType.Custom,
@@ -153,43 +154,38 @@ const updateStatus = new CronJob('*/10 * * * *', async function () {
 	else if (a === 2) {
 		client.user.setActivity({
 			type: ActivityType.Playing,
-			name: 'customstatus',
-			state: 'Sid Meier\'s Civilization V', // Customize this to your desired status message
+			name: 'Sid Meier\'s Civilization V', // Customize this to your desired status message
 		});
 	}
 	else if (a === 3) {
 		client.user.setActivity({
 			type: ActivityType.Playing,
-			name: 'customstatus',
-			state: 'Rocket League', // Customize this to your desired status message
+			name: 'Rocket League', // Customize this to your desired status message
 		});
 	}
 	else if (a === 4) {
 		client.user.setActivity({
 			type: ActivityType.Playing,
-			name: 'customstatus',
-			state: 'Helldivers II', // Customize this to your desired status message
+			name: 'Helldivers II', // Customize this to your desired status message
 		});
 	}
 	else if (a === 5) {
 		client.user.setActivity({
 			type: ActivityType.Playing,
-			name: 'customstatus',
-			state: 'Grand Theft Auto VI', // Customize this to your desired status message
+			name: 'Grand Theft Auto VI', // Customize this to your desired status message
 		});
 	}
 	else if (a === 6) {
 		client.user.setActivity({
 			type: ActivityType.Playing,
-			name: 'customstatus',
-			state: 'Final Fantasy XVI', // Customize this to your desired status message
+			name: 'Final Fantasy X', // Customize this to your desired status message
 		});
 	}
 	else if (a === 7) {
 		client.user.setActivity({
 			type: ActivityType.Watching,
-			name: 'customstatus',
-			state: 'Twitch.tv', // Customize this to your desired status message
+			name: 'Twitch.tv', // Customize this to your desired status message
+			url: 'https://twitch.tv',
 		});
 	}
 	else {
