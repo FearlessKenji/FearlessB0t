@@ -141,7 +141,7 @@ const Check = new CronJob(config.cron, async function () {
 
 // Update status periodically
 let a = 0;
-const updateStatus = new CronJob('*/1 * * * *', async function () {
+const updateStatus = new CronJob('*/10 * * * *', async function () {
 	a++;
 	if (a === 1) {
 		client.user.setActivity({
