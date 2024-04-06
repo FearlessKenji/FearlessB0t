@@ -62,11 +62,11 @@ const Check = new CronJob(config.cron, async function () {
 			where: { guildId: server.guildId },
 			raw: true,
 		});
+		console.log(writeLog(`Checking channels from ${client.guilds.cache.get(server.guildId)}, ID: ${server.guildId}`));
 		const tempData = JSON.parse(fs.readFileSync('./config.json'));
 
 		for (const chan of channels) {
 			if (!chan.ChannelName) continue;
-			console.log(writeLog(`Checking ${chan.ChannelName} from ${chan.guildId}; ${client.guilds.cache.get(chan.guildId)}`));
 
 			let streamData = await stream.getData(chan.ChannelName, tempData.twitchClientId, tempData.authToken);
 			if (streamData.data.length == 0) continue;
@@ -143,7 +143,6 @@ const Check = new CronJob(config.cron, async function () {
 let a = 0;
 const updateStatus = new CronJob('*/10 * * * *', async function () {
 	a++;
-	console.log(`Changing to status ${a}`);
 	if (a === 1) {
 		client.user.setActivity({
 			type: ActivityType.Custom,
