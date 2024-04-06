@@ -147,7 +147,7 @@ const updateStatus = new CronJob('*/10 * * * *', async function () {
 		client.user.setActivity({
 			type: ActivityType.Custom,
 			name: 'customstatus',
-			state: `Lurking in ${client.guilds.cache.size} servers.`, // Customize this to your desired status message
+			state: `Lurking in ${client.guilds.cache.size} servers`, // Customize this to your desired status message
 		});
 	}
 	else if (a === 2) {
@@ -184,11 +184,14 @@ const updateStatus = new CronJob('*/10 * * * *', async function () {
 		client.user.setActivity({
 			type: ActivityType.Watching,
 			name: 'Twitch.tv', // Customize this to your desired status message
-			url: 'https://twitch.tv',
 		});
 	}
 	else {
 		a = 0;
+		client.user.setActivity({
+			type: ActivityType.Watching,
+			name: 'you sleep', // Customize this to your desired status message
+		});
 	}
 });
 
