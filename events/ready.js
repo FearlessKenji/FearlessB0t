@@ -1,4 +1,4 @@
-const { Events } = require('discord.js');
+const { Events, ActivityType } = require('discord.js');
 const { writeLog } = require('../modules/writeLog.js');
 const { Servers, Channels } = require('../database/dbObjects.js');
 // When the client is ready, run this code (only once).
@@ -12,5 +12,9 @@ module.exports = {
 		Channels.sync();
 		Servers.sync();
 		console.log(writeLog(`Ready! Logged in as ${client.user.tag}`));
+		client.user.setActivity({
+			type: ActivityType.Custom,
+			name: 'Reticulating splines...',
+		});
 	},
 };

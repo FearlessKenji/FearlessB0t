@@ -139,61 +139,23 @@ const Check = new CronJob(config.cron, async function () {
 	}
 });
 
-// Update status periodically
-let a = 0;
+const activities = [
+	{ type: ActivityType.Custom, state: `Lurking in ${client.guilds.cache.size} servers` },
+	{ type: ActivityType.Playing, name: 'Sid Meier\'s Civilization V' },
+	{ type: ActivityType.Playing, name: 'Rocket League' },
+	{ type: ActivityType.Playing, name: 'HELLDIVERS™ II' },
+	{ type: ActivityType.Playing, name: 'Grand Theft Auto VI' },
+	{ type: ActivityType.Playing, name: 'Final Fantasy X' },
+	{ type: ActivityType.Watching, name: 'Twitch.tv' },
+	{ type: ActivityType.Watching, name: 'you sleep' },
+];
+
+let activityIndex = 0;
 const updateStatus = new CronJob('*/10 * * * *', async function () {
-	a++;
-	if (a === 1) {
-		client.user.setActivity({
-			type: ActivityType.Custom,
-			name: 'customstatus',
-			state: `Lurking in ${client.guilds.cache.size} servers`, // Customize this to your desired status message
-		});
-	}
-	else if (a === 2) {
-		client.user.setActivity({
-			type: ActivityType.Playing,
-			name: 'Sid Meier\'s Civilization V', // Customize this to your desired status message
-		});
-	}
-	else if (a === 3) {
-		client.user.setActivity({
-			type: ActivityType.Playing,
-			name: 'Rocket League', // Customize this to your desired status message
-		});
-	}
-	else if (a === 4) {
-		client.user.setActivity({
-			type: ActivityType.Playing,
-			name: 'Helldivers II', // Customize this to your desired status message
-		});
-	}
-	else if (a === 5) {
-		client.user.setActivity({
-			type: ActivityType.Playing,
-			name: 'Grand Theft Auto VI', // Customize this to your desired status message
-		});
-	}
-	else if (a === 6) {
-		client.user.setActivity({
-			type: ActivityType.Playing,
-			name: 'Final Fantasy X', // Customize this to your desired status message
-		});
-	}
-	else if (a === 7) {
-		client.user.setActivity({
-			type: ActivityType.Watching,
-			name: 'Twitch.tv', // Customize this to your desired status message
-		});
-	}
-	else {
-		a = 0;
-		client.user.setActivity({
-			type: ActivityType.Watching,
-			name: 'you sleep', // Customize this to your desired status message
-		});
-	}
+	activityIndex = (activityIndex + 1) % activities.length;
+	client.user.setActivity(activities[activityIndex]);
 });
+
 
 // Update the authorization key every hour
 const updateAuth = new CronJob('0 * * * *', async function () {
@@ -201,14 +163,14 @@ const updateAuth = new CronJob('0 * * * *', async function () {
 });
 
 // Catch exceptions
-process.on('uncaughtException', function (err) {
+process.on('uncaughtException', err => {
 	console.error(writeLog('Caught exception: ', err));
 });
 
 // Start the timers
 updateAuth.start();
 Check.start();
-updateStatus.start(a);
+updateStatus.start();
 
 // Log in to Discord with your client's token
 client.login(config.token);
