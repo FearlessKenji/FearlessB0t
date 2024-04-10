@@ -12,9 +12,6 @@ module.exports = {
 		Channels.sync();
 		Servers.sync();
 		console.log(writeLog(`Ready! Logged in as ${client.user.tag}`));
-		client.user.setActivity({
-			type: ActivityType.Custom,
-			name: 'Reticulating splines...',
-		});
+		console.log(client.user.setActivity({ type: ActivityType.Custom, name: 'Reticulating', state: 'Reticulating splines...' }));
 	},
 };

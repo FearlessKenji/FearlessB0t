@@ -140,8 +140,8 @@ const Check = new CronJob(config.cron, async function () {
 });
 
 const activities = [
-	{ type: ActivityType.Custom, name: `Lurking in ${client.guilds.cache.size} servers` },
-	{ type: ActivityType.Custom, name: `Supervising ${client.users.cache.size} members` },
+	{ type: ActivityType.Custom, name: 'Servers', state: `Lurking in ${client.guilds.cache.size} servers` },
+	{ type: ActivityType.Custom, name: 'Members', state: `Supervising ${client.users.cache.size} members` },
 	{ type: ActivityType.Playing, name: 'Sid Meier\'s Civilization V' },
 	{ type: ActivityType.Playing, name: 'Rocket League' },
 	{ type: ActivityType.Playing, name: 'HELLDIVERS™ 2' },
