@@ -139,21 +139,28 @@ const Check = new CronJob(config.cron, async function () {
 	}
 });
 
-const activities = [
-	{ type: ActivityType.Custom, name: `Commanding ${client.guilds.cache.size} servers` },
-	{ type: ActivityType.Custom, name: `Monitoring ${client.users.cache.size} servants` },
-	{ type: ActivityType.Playing, name: 'Sid Meier\'s Civilization V' },
-	{ type: ActivityType.Playing, name: 'Grand Theft Auto VI' },
-	{ type: ActivityType.Playing, name: 'Final Fantasy X' },
-	{ type: ActivityType.Playing, name: 'Rocket League' },
-	{ type: ActivityType.Playing, name: 'HELLDIVERS™ 2' },
-	{ type: ActivityType.Watching, name: 'Twitch.tv' },
-	{ type: ActivityType.Watching, name: 'you sleep' },
-];
-
-let activityIndex = 0;
+let activityIndex = -1;
 const updateStatus = new CronJob('*/10 * * * *', async function () {
+
+	let totalMembers = 0;
+	client.guilds.cache.forEach((guild) => {
+		totalMembers += guild.memberCount;
+	});
+
+	const activities = [
+		{ type: ActivityType.Watching, name: `over ${client.guilds.cache.size} servers` },
+		{ type: ActivityType.Playing, name: 'Sid Meier\'s Civilization V' },
+		{ type: ActivityType.Watching, name: `${totalMembers} servants` },
+		{ type: ActivityType.Playing, name: 'Grand Theft Auto VI' },
+		{ type: ActivityType.Playing, name: 'Final Fantasy X' },
+		{ type: ActivityType.Playing, name: 'Rocket League' },
+		{ type: ActivityType.Playing, name: 'HELLDIVERS™ 2' },
+		{ type: ActivityType.Watching, name: 'Twitch.tv' },
+		{ type: ActivityType.Watching, name: 'you sleep' },
+	];
+
 	activityIndex = (activityIndex + 1) % activities.length;
+	`Changing activity to ${activities[activityIndex]}. Activity ${activityIndex}}`;
 	client.user.setActivity(activities[activityIndex]);
 });
 
