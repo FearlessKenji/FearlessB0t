@@ -140,12 +140,13 @@ const Check = new CronJob(config.cron, async function () {
 });
 
 const activities = [
-	{ type: ActivityType.Custom, name: `Lurking in ${client.guilds.cache.size} servers` },
+	{ type: ActivityType.Custom, name: `Commanding ${client.guilds.cache.size} servers` },
+	{ type: ActivityType.Custom, name: `Monitoring ${client.users.cache.size} servants` },
 	{ type: ActivityType.Playing, name: 'Sid Meier\'s Civilization V' },
-	{ type: ActivityType.Playing, name: 'Rocket League' },
-	{ type: ActivityType.Playing, name: 'HELLDIVERS™ 2' },
 	{ type: ActivityType.Playing, name: 'Grand Theft Auto VI' },
 	{ type: ActivityType.Playing, name: 'Final Fantasy X' },
+	{ type: ActivityType.Playing, name: 'Rocket League' },
+	{ type: ActivityType.Playing, name: 'HELLDIVERS™ 2' },
 	{ type: ActivityType.Watching, name: 'Twitch.tv' },
 	{ type: ActivityType.Watching, name: 'you sleep' },
 ];
@@ -168,9 +169,9 @@ process.on('uncaughtException', err => {
 });
 
 // Start the timers
+updateStatus.start();
 updateAuth.start();
 Check.start();
-updateStatus.start();
 
 // Log in to Discord with your client's token
 client.login(config.token);
