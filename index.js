@@ -148,7 +148,7 @@ const updateStatus = new CronJob('*/1 * * * *', async function () {
 	});
 
 	const activities = [
-		{ type: ActivityType.Custom, name: `Observing ${client.guilds.cache.size} servers` },
+		{ type: ActivityType.Custom, name: 'CustomStatus', state: `Observing ${client.guilds.cache.size} servers` },
 		{ type: ActivityType.Playing, name: 'Sid Meier\'s Civilization V' },
 		{ type: ActivityType.Watching, name: `${totalMembers} servants` },
 		{ type: ActivityType.Playing, name: 'Grand Theft Auto VI' },

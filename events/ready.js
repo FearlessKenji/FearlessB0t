@@ -14,7 +14,8 @@ module.exports = {
 		console.log(writeLog(`Ready! Logged in as ${client.user.tag}`));
 		client.user.setActivity({
 			type: ActivityType.Custom,
-			name: 'Rebooting...',
+			name: 'CustomStatus',
+			state: 'Rebooting...',
 		});
 	},
 };
