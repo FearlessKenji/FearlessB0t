@@ -140,7 +140,7 @@ const Check = new CronJob(config.cron, async function () {
 });
 
 let activityIndex = -1;
-const updateStatus = new CronJob('*/1 * * * *', async function () {
+const updateStatus = new CronJob('*/10 * * * *', async function () {
 
 	let totalMembers = 0;
 	client.guilds.cache.forEach((guild) => {
@@ -148,9 +148,9 @@ const updateStatus = new CronJob('*/1 * * * *', async function () {
 	});
 
 	const activities = [
-		{ type: ActivityType.Custom, name: 'CustomStatus', state: `Observing ${client.guilds.cache.size} servers` },
+		{ type: ActivityType.Watching, name: `${client.guilds.cache.size} servers` },
+		{ type: ActivityType.Playing, name: `with ${totalMembers} servants` },
 		{ type: ActivityType.Playing, name: 'Sid Meier\'s Civilization V' },
-		{ type: ActivityType.Watching, name: `${totalMembers} servants` },
 		{ type: ActivityType.Playing, name: 'Grand Theft Auto VI' },
 		{ type: ActivityType.Playing, name: 'Final Fantasy X' },
 		{ type: ActivityType.Playing, name: 'Rocket League' },
@@ -160,7 +160,6 @@ const updateStatus = new CronJob('*/1 * * * *', async function () {
 	];
 
 	activityIndex = (activityIndex + 1) % activities.length;
-	`Changing activity to ${activities[activityIndex]}. Activity ${activityIndex}}`;
 	client.user.setActivity(activities[activityIndex]);
 });
 
