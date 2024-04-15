@@ -12,6 +12,6 @@ module.exports = {
 		Channels.sync();
 		Servers.sync();
 		console.log(writeLog(`Ready! Logged in as ${client.user.tag}`));
-		client.user.setActivity({ type: ActivityType.Custom, name: 'Rebooting...' });
+		client.user.setActivity({ type: ActivityType.Competing, name: 'galactic war' });
 	},
 };
