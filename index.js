@@ -154,7 +154,7 @@ const updateStatus = new CronJob('*/10 * * * *', async function () {
 		{ type: ActivityType.Playing, name: 'Grand Theft Auto VI' },
 		{ type: ActivityType.Playing, name: 'Final Fantasy X' },
 		{ type: ActivityType.Playing, name: 'Rocket League' },
-		{ type: ActivityType.Playing, name: 'HELLDIVERS™ 2' },
+		{ type: ActivityType.Playing, name: 'hackmud' },
 		{ type: ActivityType.Watching, name: 'Twitch.tv' },
 		{ type: ActivityType.Watching, name: 'you sleep' },
 	];
